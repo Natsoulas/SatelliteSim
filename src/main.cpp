@@ -2,13 +2,14 @@
 #include <fstream>
 #include <string>
 #include <Eigen/Dense>
+#include "constants.hpp"
 using namespace std;
 using namespace Eigen;
 
 int main() {
-    // Initial State Vector (400km earth orbit):
-    Vector3d vec(3);
-    vec << 6.9, 4.2, 0.2;
-    cout << "Hello Eigen: " << vec << endl;
+    // Initial State Vector (400km circular + equatorial earth orbit):
+    VectorXd state(6);
+    state << physics::radius_Earth + 400e3, 0, 0, 0, 7672.598648385013, 0;
+    cout << "Initial State Vector (r, v): " << state << endl;
     return 0;
 }
