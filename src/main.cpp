@@ -6,7 +6,7 @@ using namespace std;
 using namespace Eigen;
 
 int main() {
-    // Proof that I can use Eigen in C++ Dev :)
+    // Initial State Vector (400km earth orbit):
     Vector3d vec(3);
     vec << 6.9, 4.2, 0.2;
     cout << "Hello Eigen: " << vec << endl;
