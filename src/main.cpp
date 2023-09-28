@@ -12,7 +12,7 @@ using namespace Eigen;
 
 int main() {
 
-    int sim_duration = 5544*100; // seconds*10, as integration step size dt is 0.1 sec.
+    int sim_duration = 6900*10; // seconds*10, as integration step size dt is 0.1 sec.
 
      // Create an ofstream object to write to a CSV file
     ofstream outputFile("simulated_state_history.csv");
@@ -38,8 +38,9 @@ int main() {
     cout << "Initial Target State vector (r, v): " << desired_state << endl;
     // Null external force vector.
     Vector3d F(3);
-    F << 0.0,0.0,0.0;
-    
+    F << 0.0,0.0,100.0;
+    Vector3d F_des(3);
+    F_des << 0.0,0.0,0.0;
     // VectorXd state_derivative(6);
     // state_derivative = eom(state, F);
     // cout << "Initial State Derivative Vector (v, a): " << state_derivative << endl;
@@ -48,8 +49,8 @@ int main() {
     for (int i = 0; i < sim_duration; i++)  {
         // Step the dynamics forward by a tenth of a second.
         state = ralston4(&eom, state, F);
-        desired_state = ralston4(&eom, desired_state, F);
-        if (i%100 == 0) {
+        desired_state = ralston4(&eom, desired_state, F_des);
+        if (i%10 == 0) {
         outputFile << i * 0.01 << ","
                    << state(0) << ","
                    << state(1) << ","
