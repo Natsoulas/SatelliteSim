@@ -2,6 +2,7 @@
 #include <fstream>
 #include <string>
 #include <Eigen/Dense>
+#include <cmath>
 #include "constants.hpp"
 #include "simulation/eom.hpp"
 #include "simulation/ralston4.hpp"
@@ -23,15 +24,18 @@ int main() {
     }
 
     // Write header to the CSV file (optional)
-    outputFile << "Time,Position_X,Position_Y,Position_Z,Velocity_X,Velocity_Y,Velocity_Z" << std::endl;
+    outputFile << "Time,Position_X,Position_Y,Position_Z,Velocity_X,Velocity_Y,Velocity_Z,Position_X_des,Position_Y_des,Position_Z_des,Velocity_X_des,Velocity_Y_des,Velocity_Z_des" << std::endl;
 
 
     // Initial State Vector (400km circular + equatorial earth orbit):
     Matrix<double, sim::state_size, 1> state;
+    Matrix<double, sim::state_size, 1> desired_state;
 
-    state << physics::radius_Earth + 400e3, 0, 0, 0, 7672.598648385013, 0;
+    state << physics::radius_Earth + 250e3, 0, 0, 0, 7672.598648385013, 0;
+    desired_state << physics::radius_Earth + 600e3, 0, 0, 0, sqrt(physics::mu_Earth/(physics::radius_Earth + 450e3)), 0;
+
     cout << "Initial State Vector (r, v): " << state << endl;
-
+    cout << "Initial Target State vector (r, v): " << desired_state << endl;
     // Null external force vector.
     Vector3d F(3);
     F << 0.0,0.0,0.0;
@@ -44,6 +48,7 @@ int main() {
     for (int i = 0; i < sim_duration; i++)  {
         // Step the dynamics forward by a tenth of a second.
         state = ralston4(&eom, state, F);
+        desired_state = ralston4(&eom, desired_state, F);
         if (i%100 == 0) {
         outputFile << i * 0.01 << ","
                    << state(0) << ","
@@ -51,8 +56,15 @@ int main() {
                    << state(2) << ","
                    << state(3) << ","
                    << state(4) << ","
-                   << state(5) << std::endl;
+                   << state(5) << ","
+                   << desired_state(0) << ","
+                   << desired_state(1) << ","
+                   << desired_state(2) << ","
+                   << desired_state(3) << ","
+                   << desired_state(4) << ","
+                   << desired_state(5) << std::endl;
         }
+    
     }
     outputFile.close();
 
