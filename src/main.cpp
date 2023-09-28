@@ -13,6 +13,19 @@ int main() {
 
     int sim_duration = 5544*100; // seconds*10, as integration step size dt is 0.1 sec.
 
+     // Create an ofstream object to write to a CSV file
+    ofstream outputFile("simulated_state_history.csv");
+
+    // Check if the file opened successfully
+    if (!outputFile.is_open()) {
+        cerr << "Error opening the output file." << std::endl;
+        return 1;
+    }
+
+    // Write header to the CSV file (optional)
+    outputFile << "Time,Position_X,Position_Y,Position_Z,Velocity_X,Velocity_Y,Velocity_Z" << std::endl;
+
+
     // Initial State Vector (400km circular + equatorial earth orbit):
     Matrix<double, sim::state_size, 1> state;
 
@@ -32,8 +45,16 @@ int main() {
         // Step the dynamics forward by a tenth of a second.
         state = ralston4(&eom, state, F);
         if (i%100 == 0) {
-        cout << "State Vector: " << state << endl;
+        outputFile << i * 0.01 << ","
+                   << state(0) << ","
+                   << state(1) << ","
+                   << state(2) << ","
+                   << state(3) << ","
+                   << state(4) << ","
+                   << state(5) << std::endl;
         }
     }
+    outputFile.close();
+
     return 0;
 }
