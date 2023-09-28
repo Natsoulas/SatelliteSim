@@ -26,7 +26,7 @@ Additionally you will want to activate my additional bash file(s) to automate bu
 - to output compiled program, run ./fast in the build directory (run cd build first)
 - use post-processing script(s) for data analysis+visualization (in data_processing directory)
 
-Here is an example plot here of two circular orbits at very different altitude:
+Here is an example plot here of two circular orbits at very different altitudes:
 ![Alt Text](./cool_plots/fermata.png)
 
 It looks like a fermata, which is a sign I should develop for an unspecified amount of time.
