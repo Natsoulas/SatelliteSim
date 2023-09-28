@@ -27,7 +27,7 @@ int main() {
     outputFile << "Time,Position_X,Position_Y,Position_Z,Velocity_X,Velocity_Y,Velocity_Z,Position_X_des,Position_Y_des,Position_Z_des,Velocity_X_des,Velocity_Y_des,Velocity_Z_des" << std::endl;
 
 
-    // Initial State Vector (400km circular + equatorial earth orbit):
+    // Initial State Vector (250km circular + equatorial earth orbit, and 10000km circuilar + equatorial orbit):
     Matrix<double, sim::state_size, 1> state;
     Matrix<double, sim::state_size, 1> desired_state;
 
