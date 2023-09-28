@@ -25,8 +25,8 @@ Additionally you will want to activate my additional bash file(s) to automate bu
 - in root directory run ./rebuild.sh to build the project
 - to output compiled program, run ./fast in the build directory (run cd build first)
 - use post-processing script(s) for data analysis+visualization (in data_processing directory)
-- Here is an example plot here of two diverging satellite trajectories:
-![Alt Text](./cool_plots/example_3d_plot.png)
+- Here is an example plot here of two circular orbits at very different altitudes.
+![Alt Text](./cool_plots/fermata.png)
 
 ## License
 

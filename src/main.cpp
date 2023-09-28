@@ -12,7 +12,7 @@ using namespace Eigen;
 
 int main() {
 
-    int sim_duration = 6900*10; // seconds*10, as integration step size dt is 0.1 sec.
+    int sim_duration = 10000*10; // seconds*10, as integration step size dt is 0.1 sec.
 
      // Create an ofstream object to write to a CSV file
     ofstream outputFile("simulated_state_history.csv");
@@ -31,14 +31,14 @@ int main() {
     Matrix<double, sim::state_size, 1> state;
     Matrix<double, sim::state_size, 1> desired_state;
 
-    state << physics::radius_Earth + 250e3, 0, 0, 0, 7672.598648385013, 0;
-    desired_state << physics::radius_Earth + 600e3, 0, 0, 0, sqrt(physics::mu_Earth/(physics::radius_Earth + 450e3)), 0;
+    state << physics::radius_Earth + 250e3, 0, 0, 0, sqrt(physics::mu_Earth/(physics::radius_Earth + 250e3)), 0;
+    desired_state << physics::radius_Earth + 10000e3, 0, 0, 0, sqrt(physics::mu_Earth/(physics::radius_Earth + 10000e3)), 0;
 
     cout << "Initial State Vector (r, v): " << state << endl;
     cout << "Initial Target State vector (r, v): " << desired_state << endl;
     // Null external force vector.
     Vector3d F(3);
-    F << 0.0,0.0,100.0;
+    F << 0.0,0.0,0.0;
     Vector3d F_des(3);
     F_des << 0.0,0.0,0.0;
     // VectorXd state_derivative(6);
