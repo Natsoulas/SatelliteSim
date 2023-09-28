@@ -29,7 +29,7 @@ Additionally you will want to activate my additional bash file(s) to automate bu
 Here is an example plot here of two circular orbits at very different altitude:
 ![Alt Text](./cool_plots/fermata.png)
 
-It looks like a fermata, which is a sign I should stop developing in Python.
+It looks like a fermata, which is a sign I should develop for an unspecified amount of time.
 
 ## License
 
