@@ -12,7 +12,7 @@ Additionally you will want to activate my additional bash file(s) to automate bu
 
 - CMAKE VERSION 3.25.2
 - C++ compiler
-- activate bashrc files via terminal command: "chmod +x rebuild.sh" (as an example of one bash file)
+- activate bash script(s) via terminal command: "chmod +x rebuild.sh" (as an example of one bash file)
 
 ### Installing
 
