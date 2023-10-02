@@ -24,21 +24,21 @@ plt.figure(figsize=(12, 6))  # Adjust the figure size as needed
 plt.subplot(131)  # 1 row, 3 columns, first subplot
 plt.plot(t, ux)
 plt.xlabel('Time')
-plt.ylabel('U_X (m/s^2)')
+plt.ylabel('U_X (N)')
 plt.title('U_X vs. Time')
 
 # Plot for U_Y
 plt.subplot(132)  # 1 row, 3 columns, second subplot
 plt.plot(t, uy)
 plt.xlabel('Time')
-plt.ylabel('U_Y (m/s^2)')
+plt.ylabel('U_Y (N)')
 plt.title('U_Y vs. Time')
 
 # Plot for U_Z
 plt.subplot(133)  # 1 row, 3 columns, third subplot
 plt.plot(t, uz)
 plt.xlabel('Time')
-plt.ylabel('U_Z (m/s^2)')
+plt.ylabel('U_Z (N)')
 plt.title('U_Z vs. Time')
 
 # Adjust layout and show the plots
