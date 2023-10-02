@@ -58,7 +58,7 @@ cbar.set_label('Time (s)')
 ax.set_xlabel('X - radial distance (m)')
 ax.set_ylabel('Y - along track distance (m)')
 ax.set_zlabel('Z - along h direction (m)')
-plt.title('Rendezvous from 12km radial offset and 2km normal offset')
+plt.title('Rendezvous from 12km radial offset, 10km along track offset, and 2km normal offset')
 ax.legend()
 
 plt.show()

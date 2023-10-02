@@ -38,8 +38,7 @@ int main() {
     cout << "Initial State Vector (rx, ry, rz, vx, vy, vz): " << state << endl;
 
     Matrix<double, 3, sim::state_size > K_LQR;
-    //K_LQR << 0.0011, 0, 0, 0.0473, -0.000127, 0, 4.5452E-5, 9.9897E-04, 0, -1.0217E-4, 0.0447, 0, 0, 0, 0.0032, 0, 0, 0.0795;
-    // This one was best: K_LQR << 3.8383E-6, -1.1014E-6, 0, 0.0020, 7.7590e-4, 0, 3.0269e-6, 1.7178e-7, 0, 6.2072e-4, 0.0016, 0, 0, 0, 2.2598e-6, 0, 0, 0.0021;
+    // LQR Gain found and tuned using State Space Model of CW dynamics.
     K_LQR << 2.3609e-7, -1.3237e-8, 2.4147e-22, 6.7755e-05, 1.1001e-4, 1.9864e-19, 1.0878e-6, -2.9323e-8, -9.9355e-23, 8.8011e-5, 5.4589e-4, 1.1571e-20, 6.9589e-21, -8.6165e-23, 4.6081e-9, -2.5218e-19, 4.0818e-18, 9.6001e-5; 
     
     // Numerical Integration given initial state from above:

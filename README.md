@@ -28,13 +28,14 @@ Additionally you will want to activate my additional bash file(s) to automate bu
 
 Here is a 3D plot of a rendezvous trajectory in the Hill Frame of the Target Satellite:
 
-![Alt Text](./cool_plots/color_scale_rendezvous.png)
-![Alt Text](./cool_plots/radial_and_normal_offset_control.png)
+![Alt Text](./cool_plots/rendezvous_3d_450mN.png)
+![Alt Text](./cool_plots/control_signal_450mN.png.png)
+This one has a limit set for the Control Force at 450 mN.
 
-Here is another 3D plot of a rendezvous trajectory in the hill frame:
+Here is another 3D plot of a similar rendezvous trajectory in the hill frame without a limit on control force (it didn't surpass 15 Newtons):
 
-![Alt Text](./cool_plots/lqr_rendezvous.png)
-![Alt Text](./cool_plots/control_signal.png)
+![Alt Text](./cool_plots/spiral_rendezvous.png)
+
 
 It looks pretty solid, saturation in the beginning, but quick convergence nonetheless.
 
