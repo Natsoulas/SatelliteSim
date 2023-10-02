@@ -26,7 +26,12 @@ Additionally you will want to activate my additional bash file(s) to automate bu
 - to output compiled program, run ./fast in the build directory (run cd build first)
 - use post-processing script(s) for data analysis+visualization (in data_processing directory)
 
-Here is a 3D plot of a rendezvous trajectory int the hill frame:
+Here is a 3D plot of a rendezvous trajectory in the Hill Frame of the Target Satellite:
+
+![Alt Text](./cool_plots/color_scale_rendezvous.png)
+![Alt Text](./cool_plots/radial_and_normal_offset_control.png)
+
+Here is another 3D plot of a rendezvous trajectory in the hill frame:
 
 ![Alt Text](./cool_plots/lqr_rendezvous.png)
 ![Alt Text](./cool_plots/control_signal.png)

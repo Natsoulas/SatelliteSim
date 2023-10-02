@@ -13,7 +13,7 @@ using namespace Eigen;
 
 int main() {
 
-    int sim_duration = 60000*10; // seconds*10, as integration step size dt is 0.1 sec.
+    int sim_duration = 25000*10; // seconds*10, as integration step size dt is 0.1 sec.
 
      // Create an ofstream object to write to a CSV file
     ofstream outputFile("simulated_state_history.csv");
@@ -33,7 +33,8 @@ int main() {
     //Matrix<double, sim::state_size, 1> desired_state;
     double n = sqrt(physics::mu_Earth/pow(7167.0E3,3.0));
 
-    state << 12000,0,0,0,6.2355,0;
+    //state << 12000,0,0,0,6.2355,0;
+    state << 12000, 0, 2000, 0, 5.30,0;
 
     cout << "Initial State Vector (r, v): " << state << endl;
     // Null external force vector.

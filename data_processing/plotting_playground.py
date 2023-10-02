@@ -1,6 +1,7 @@
 import pandas as pd
 import matplotlib.pyplot as plt
 from mpl_toolkits.mplot3d import Axes3D
+from matplotlib import cm
 
 # Read the CSV file into a DataFrame
 df = pd.read_csv('build/simulated_state_history.csv')
@@ -9,6 +10,7 @@ df = pd.read_csv('build/simulated_state_history.csv')
 x = df['Position_X']
 y = df['Position_Y']
 z = df['Position_Z']
+t = df['Time']  # Extract time values
 
 ux = df['U_X']
 uy = df['U_Y']
@@ -43,18 +45,23 @@ plt.title('U_Z vs. Time')
 plt.tight_layout()
 plt.show()
 
-# Create a 3D scatter plot
+# Create a 3D scatter plot with a color scale based on time
 fig = plt.figure()
 ax = fig.add_subplot(111, projection='3d')
-ax.scatter(x, y, z, c='b', marker='o', label='Chaser Satellite Position in Hill Frame')
-#ax.scatter(x_des, y_des, z_des, c='r', marker='o', label='Desired Position')
+sc = ax.scatter(x, y, z, c=t, cmap=cm.jet, marker='o', label='Chaser Satellite Position in Hill Frame')
+
+# Add color bar to indicate time
+cbar = plt.colorbar(sc)
+cbar.set_label('Time (s)')
+
 # Set labels and title
 ax.set_xlabel('X - radial distance (m)')
 ax.set_ylabel('Y - along track distance (m)')
 ax.set_zlabel('Z - along h direction (m)')
-plt.title('Rendezvous from 12km radial offset')
+plt.title('Rendezvous from 12km radial offset and 2km normal offset')
 ax.legend()
 
 plt.show()
+
 
 
