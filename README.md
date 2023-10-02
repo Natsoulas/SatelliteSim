@@ -37,7 +37,7 @@ Here is another 3D plot of a similar rendezvous trajectory in the hill frame wit
 ![Alt Text](./cool_plots/spiral_rendezvous.png)
 
 
-It looks pretty solid, saturation in the beginning, but quick convergence nonetheless.
+Overall this looks pretty solid, just gotta add an LQR auto-tuning portion to this simulation such that it can apply to any target satellite altitude. Either that or an attitude portion of the sim is next.
 
 ## License
 
