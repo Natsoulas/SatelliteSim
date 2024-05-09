@@ -2,10 +2,8 @@
 #include <fstream>
 #include <string>
 #include <Eigen/Dense>
-#include <cmath>
 #include "constants.hpp"
 #include "simulation/eom.hpp"
-#include "simulation/eom_cw.hpp"
 #include "simulation/ralston4.hpp"
 
 using namespace std;
@@ -13,7 +11,7 @@ using namespace Eigen;
 
 int main() {
 
-    int sim_duration = 300000*10; // seconds*10, as integration step size dt is 0.1 sec.
+    int sim_duration = 5544*(1/sim::dt); // Convert total seconds to number of timesteps.
 
      // Create an ofstream object to write to a CSV file
     ofstream outputFile("simulated_state_history.csv");
@@ -25,49 +23,42 @@ int main() {
     }
 
     // Write header to the CSV file (optional)
-    outputFile << "Time,Position_X,Position_Y,Position_Z,Velocity_X,Velocity_Y,Velocity_Z,U_X,U_Y,U_Z" << std::endl;
+    outputFile << "Time,Position_X,Position_Y,Position_Z,Velocity_X,Velocity_Y,Velocity_Z,Quaternion_S,Quaternion_X,Quaternion_Y,Quaternion_Z,AngV_X,AngV_Y,AngV_Z" << std::endl;
 
 
-    // Initial State Vector (250km circular + equatorial earth orbit, and 10000km circuilar + equatorial orbit):
+    // Initial State Vector (400km circular + equatorial earth orbit):
     Matrix<double, sim::state_size, 1> state;
-    double n = sqrt(physics::mu_Earth/pow(7167.0E3,3.0));
 
-    //state << 12000,0,0,0,6.2355,0;
-    state << 12000, 10000, 2000, 0, 5.30,10.0;
+    state << physics::radius_Earth + 400e3, 0, 0, 0, 7672.598648385013, 0, 0, 0, 0, 0, 0, 0, 0;
+    cout << "Initial State Vector (r, v, q, w): " << state << endl;
 
-    cout << "Initial State Vector (rx, ry, rz, vx, vy, vz): " << state << endl;
+    // Null external force vector.
+    Vector3d F(3);
+    F << 0.0,0.0,0.0;
 
-    Matrix<double, 3, sim::state_size > K_LQR;
-    // LQR Gain found and tuned using State Space Model of CW dynamics.
-    K_LQR << 2.3609e-7, -1.3237e-8, 2.4147e-22, 6.7755e-05, 1.1001e-4, 1.9864e-19, 1.0878e-6, -2.9323e-8, -9.9355e-23, 8.8011e-5, 5.4589e-4, 1.1571e-20, 6.9589e-21, -8.6165e-23, 4.6081e-9, -2.5218e-19, 4.0818e-18, 9.6001e-5; 
-    
+    // Null external torque vector.
+    Vector3d Tau(3);
+    Tau << 0.0,0.0,0.0;
+
     // Numerical Integration given initial state from above:
     for (int i = 0; i < sim_duration; i++)  {
-        // Step the dynamics forward by a tenth of a second.
-        Vector3d F(3);
-        F = -K_LQR*state*spacecraft::m;
-        double F_magnitude = F.norm();
-
-        // Control Signal saturation cap.
-        if (F_magnitude >0.450) {
-             F = (F/F_magnitude)*0.450;
-        }
-        state = ralston4(&eom_cw, state, F, n);
-       
-        // Save off state and control data every second.
-        if (i%10 == 0) {
-        outputFile << i * 0.1 << ","
+        // Step the dynamics forward by a single step.
+        state = ralston4(&eom, state, F, Tau);
+        // Save state at each step to output CSV file.
+        outputFile << i * sim::dt << ","
                    << state(0) << ","
                    << state(1) << ","
                    << state(2) << ","
                    << state(3) << ","
                    << state(4) << ","
                    << state(5) << ","
-                   << F(0) << ","
-                   << F(1) << ","
-                   << F(2) << std::endl;
-        }
-    
+                   << state(6) << ","
+                   << state(7) << ","
+                   << state(8) << ","
+                   << state(9) << ","
+                   << state(10) << ","
+                   << state(11) << ","
+                   << state(12) << std::endl;
     }
     outputFile.close();
 

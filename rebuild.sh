@@ -18,7 +18,7 @@ cmake ..
 make
 
 # Run the executable (if desired)
-./fast
+./6DOF
 
 # Navigate back to the project directory
 cd ..
