@@ -18,7 +18,7 @@ cmake ..
 make
 
 # Run the executable (if desired)
-./6DOF
+./satsim
 
 # Navigate back to the project directory
 cd ..

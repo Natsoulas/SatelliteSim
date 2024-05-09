@@ -1,7 +1,6 @@
-# lqr_rendezvous
+# SatelliteSim
 
-This is a C++ simulation of spaceflight dynamics for a satellite in low-earth orbit.
-It will implement a control law for a time-optimal rendezvous with another satellite.
+This is a C++ simulation of 6DOF spaceflight dynamics for an earth-orbiting satellilte.
 
 ## Getting Started
 
@@ -23,21 +22,8 @@ Additionally you will want to activate my additional bash file(s) to automate bu
 ## Usage
 
 - in root directory run ./rebuild.sh to build the project
-- to output compiled program, run ./fast in the build directory (run cd build first)
+- to output compiled program, run ./satsim in the build directory (run cd build first)
 - use post-processing script(s) for data analysis+visualization (in data_processing directory)
-
-Here is a 3D plot of a rendezvous trajectory in the Hill Frame of the Target Satellite:
-
-![Alt Text](./cool_plots/rendezvous_3d_450mN.png)
-![Alt Text](./cool_plots/control_signal_450mN.png)
-This one has a limit set for the Control Force at 450 mN.
-
-Here is another 3D plot of a similar rendezvous trajectory in the hill frame without a limit on control force (it didn't surpass 15 Newtons):
-
-![Alt Text](./cool_plots/spiral_rendezvous.png)
-
-
-Overall this looks pretty solid, just gotta add an LQR auto-tuning portion to this simulation such that it can apply to any target satellite altitude. Either that or an attitude portion of the sim is next.
 
 ## License
 
